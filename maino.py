@@ -64,10 +64,13 @@ def processcommand(c: str):
         for web in websites:
             if web in c:
                 webbrowser.open(websites[web])
-                break
+                return f"Opening {web}"
     elif 'search' in c:
         c = c.replace("search", "")
-        google_search(c.replace(" on google", ""))
+        c = c.replace(" on google", "")
+        google_search(c)
+        return f"Searching for{c}"
+
     elif 'news' in c:
         req_get = requests.get(News_api_link)
         if req_get.status_code == 200:
@@ -77,6 +80,7 @@ def processcommand(c: str):
                 speak(article['title'])
         else:
             speak("Sorry unable to get News currently")
+            return "Sorry unable to get News currently"
     elif 'define' in c:
         word = c[7::]
         req_get = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}")
@@ -91,26 +95,33 @@ def processcommand(c: str):
 
 
 if __name__ == "__main__":
-    print("Initializing Jarvis.....")
-    speak("Initializing Jarvis.....")
-    r = sr.Recognizer()
-    while True:
-        try:
-            with sr.Microphone() as source:
-                print("Say something!")
-                audio = r.listen(source, phrase_time_limit=1, timeout=2)
-            command = r.recognize_google(audio)
-            print(command)
-            if command.lower() == "jarvis":
-                print("hello sir")
-                speak("hello sir")
-                try:
-                    with sr.Microphone() as source:
-                        print("Jarvis active!")
-                        cmd = r.listen(source, phrase_time_limit=1, timeout=2)
-                        command2 = r.recognize_google(cmd)
-                        processcommand(command2)
-                except:
-                    print("error 2")
-        except:
-            print("Error")
+    if __name__ == "__main__":
+        print("Initializing Jarvis.....")
+        speak("Initializing Jarvis.....")
+        r = sr.Recognizer()
+        while True:
+            try:
+                with sr.Microphone() as source:
+                    print("Say something!")
+                    audio = r.listen(source, phrase_time_limit=5, timeout=5)
+                command = r.recognize_google(audio)
+                print(command)
+                if command.lower() == "jarvis":
+                    print("Hello sir")
+                    speak("Hello sir")
+                    try:
+                        with sr.Microphone() as source:
+                            print("Jarvis active!")
+                            cmd = r.listen(source, phrase_time_limit=5, timeout=5)
+                            command2 = r.recognize_google(cmd)
+                            processcommand(command2)
+                    except sr.UnknownValueError:
+                        print("Could not understand audio")
+                    except sr.RequestError as e:
+                        print(f"Could not request results; {e}")
+            except sr.UnknownValueError:
+                print("Could not understand audio")
+            except sr.RequestError as e:
+                print(f"Could not request results; {e}")
+            except Exception as e:
+                print(f"Unexpected error: {e}")
