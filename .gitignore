@@ -1,0 +1,50 @@
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore gTTS temporary files
+temp.mp3
+
+# Ignore environment variables file
+.env
+
+# Ignore other unnecessary files and directories
+.idea/
+*.log
+
+# Ignore PyCharm project files
+*.iml
+*.ipr
+*.iws
+
+# Node.js dependency directory (if you use Node.js)
+node_modules/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Ignore Python egg info
+*.egg-info/
+
+# Ignore build and dist directories
+build/
+dist/
+
+# Ignore coverage and test reports
+coverage/
+*.cover
+*.log
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Ignore compiled shared objects (C extensions)
+*.so
+
+# Ignore temporary files
+*.tmp
+*.temp
