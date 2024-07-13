@@ -78,6 +78,7 @@ def processcommand(c: str):
             articles = data.get('articles', [])
             for article in articles:
                 speak(article['title'])
+            return "Here are the top news headlines"
         else:
             speak("Sorry unable to get News currently")
             return "Sorry unable to get News currently"
@@ -89,9 +90,12 @@ def processcommand(c: str):
             speak(f"the word {word} is defined as" + data[0]["meanings"][0]["definitions"][0]["definition"])
         else:
             AI(c, his)
+            return "Artificial Intelligence"
+        return f"{c} is defined as .."
 
     else:
         AI(c, his)
+        return "Artificial Intelligence"
 
 
 if __name__ == "__main__":
