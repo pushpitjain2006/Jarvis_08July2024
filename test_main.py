@@ -1,8 +1,8 @@
 import unittest
-from maino import processcommand
+from main import processcommand
 
 
-class TestMaino(unittest.TestCase):
+class TestMain(unittest.TestCase):
 
     def test_open_website(self):
         result = processcommand("open google")
