@@ -1,5 +1,5 @@
 import unittest
-from maino import processcommand
+from main import processcommand
 
 
 class TestMaino(unittest.TestCase):
