@@ -55,7 +55,7 @@ def google_search(query):
     webbrowser.open(url)
 
 
-News_api_link = "https://newsapi.org/v2/top-headlines?country=in&apiKey=b391114c4590453182c8c0d7430e7dd4"
+News_api_link = "Your API Key"
 
 
 def processcommand(c: str):
